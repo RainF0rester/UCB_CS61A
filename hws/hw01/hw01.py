@@ -12,10 +12,12 @@ def a_plus_abs_b(a, b):
     >>> re.findall(r'^\s*(return .*)', inspect.getsource(a_plus_abs_b), re.M)
     ['return h(a, b)']
     """
-    if b >= 0:
-        h = add
-    else:
+
+    # my answer
+    if b < 0:
         h = sub
+    else:
+        h = add
     return h(a, b)
 
 
@@ -37,8 +39,9 @@ def two_of_three(x, y, z):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(two_of_three)).body[0].body]
     ['Expr', 'Return']
     """
-    return x**2 + y**2 + z**2 - max(x, y, z)**2
 
+    # my answer
+    return x*x + y*y + z*z - max(x,y,z)*max(x,y,z)
 
 def largest_factor(x):
     """Return the largest factor of x that is smaller than x.
@@ -51,10 +54,15 @@ def largest_factor(x):
     1
     """
     "*** YOUR CODE HERE ***"
-    for i in range(x//2, 0, -1):
-        if x % i == 0:
-            return i
 
+    # my answer
+    i = 1
+    ans = i
+    while(i <= x/2):
+        if(x % i == 0 ):
+            ans = i
+        i += 1
+    return ans
 
 def if_function(condition, true_result, false_result):
     """Return true_result if condition is a true value, and
